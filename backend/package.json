@@ -4,7 +4,7 @@
   "description": "Backend for Musixmatch web app",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc && node dist/app.js"
+    "start": "tsc && node dist/backend/src/app.js"
   },
   "author": "Alex Potts",
   "license": "MIT",
