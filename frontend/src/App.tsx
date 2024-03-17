@@ -12,8 +12,8 @@ function App() {
             <Routes>
                 <Route path="/" Component={HomePage}/>
                 <Route path="/artists/:country" Component={ChartingArtistsPage}/>
-                <Route path="/album/:id" Component={ArtistAlbumsPage}/>
-                <Route path="/track/:id" Component={TrackLyricsPage}/>
+                <Route path="/artist-albums/:artistId" Component={ArtistAlbumsPage}/>
+                <Route path="/track/:trackId" Component={TrackLyricsPage}/>
             </Routes>
         </Router>
     );

@@ -6,22 +6,26 @@ export interface Artist {
 }
 
 export interface Album {
-    album_id: string;
-    album_name: string;
-    artist_id: string;
-    artist_name: string;
-    album_rating: string;
+    album: {
+        album_id: string;
+        album_name: string;
+        artist_id: string;
+        artist_name: string;
+        album_rating: string;
+    }
 }
 
 export interface Track {
-    track_id: string;
-    track_name: string;
-    album_id: string;
-    album_name: string;
-    artist_id: string;
-    artist_name: string;
-    track_rating: string;
-    has_lyrics: boolean;
+    track: {
+        track_id: string;
+        track_name: string;
+        album_id: string;
+        album_name: string;
+        artist_id: string;
+        artist_name: string;
+        track_rating: string;
+        has_lyrics: boolean;
+    }
 }
 
 export interface Lyrics {
@@ -53,4 +57,14 @@ export interface ArtistAlbumsResponse {
 
 export interface AlbumTracksResponse {
     track_list: Track[];
+}
+
+export interface AlbumTracks {
+    album_id: string;
+    tracks: Track[];
+}
+
+export type Albums = Map<string, Album["album"]>;
+export interface AlbumsWithTracks {
+    [album_id: string]: Track[];
 }

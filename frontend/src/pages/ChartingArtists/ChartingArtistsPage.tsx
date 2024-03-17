@@ -15,7 +15,6 @@ const ChartingArtistsPage: React.FC = () => {
         const fetchArtists = async () => {
             try {
                 const artists = await axios.get('http://localhost:3001/api/music/charting-artists', {params: {country}});
-                console.log('artists', artists);
                 setArtists(artists.data);
             } catch (error: any) {
                 console.error(error);
@@ -32,7 +31,7 @@ const ChartingArtistsPage: React.FC = () => {
             <ul>
                 {artists.map(artist => {
                     return <li key={artist?.artist?.artist_id}>
-                        <Link to={`artist-albums/${artist?.artist?.artist_id}`}>
+                        <Link to={`/artist-albums/${artist?.artist?.artist_id}`}>
                             {artist?.artist?.artist_name}
                         </Link>
                     </li>
