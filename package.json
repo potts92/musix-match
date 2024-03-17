@@ -1,0 +1,13 @@
+{
+  "name": "musixmatch",
+  "version": "1.0.0",
+  "description": "Simple web app for interacting with the Musixmatch API",
+  "main": "index.ts",
+  "scripts": {
+  },
+  "author": "Alex Potts",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
