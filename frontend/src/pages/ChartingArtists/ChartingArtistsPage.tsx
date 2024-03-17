@@ -16,7 +16,7 @@ const ChartingArtistsPage: React.FC = () => {
         }
 
         fetchArtists();
-    });
+    }, []);
 
     return (
         <div>
