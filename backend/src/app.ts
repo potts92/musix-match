@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes';
+import musicRoutes from './routes/musicRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ app.use(session({
 }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/music', musicRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
