@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import LogoutButton from "./LogoutButton";
 import LoginPage from "../Login/LoginPage";
+import {Link} from "react-router-dom";
 //todo: work out why alias isn't working
 import {User} from "../../../../shared/types/users";
 // import {User} from "@shared/types/users";
@@ -47,7 +48,7 @@ const HomePage: React.FC = () => {
             <div>
                 {!isLoggedIn && <LoginPage/>}
                 {isLoggedIn && <h2>You are logged in as {username}</h2>}
-                {isLoggedIn && <h3>The top songs in your country ({user?.country}) are</h3>}
+                {isLoggedIn && <Link to={`/artists/${user?.country}`}>Check out the top charting artists for {user?.country}</Link>}
             </div>
         </div>
     );

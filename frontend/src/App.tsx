@@ -2,18 +2,18 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/Home/HomePage";
-import ArtistPage from "./pages/Artist/ArtistPage";
-import AlbumPage from "./pages/Album/AlbumPage";
-import TrackPage from "./pages/Track/TrackPage";
+import ChartingArtistsPage from "./pages/ChartingArtists/ChartingArtistsPage";
+import ArtistAlbumsPage from "./pages/ArtistAlbums/ArtistAlbumsPage";
+import TrackLyricsPage from "./pages/TrackLyrics/TrackLyricsPage";
 
 function App() {
     return (
         <Router>
             <Routes>
                 <Route path="/" Component={HomePage}/>
-                <Route path="/artist/:id" Component={ArtistPage}/>
-                <Route path="/album/:id" Component={AlbumPage}/>
-                <Route path="/track/:id" Component={TrackPage}/>
+                <Route path="/artists/:country" Component={ChartingArtistsPage}/>
+                <Route path="/album/:id" Component={ArtistAlbumsPage}/>
+                <Route path="/track/:id" Component={TrackLyricsPage}/>
             </Routes>
         </Router>
     );
