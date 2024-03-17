@@ -3,8 +3,10 @@ import bcrypt from 'bcryptjs';
 import PasswordValidator from 'password-validator';
 import User from '../models/User';
 import {Details} from "../types/password-validator";
+import {CustomSessionData} from "../types/session";
 
 const router = express.Router();
+const app = express();
 
 //define password validation schema
 const passwordSchema = new PasswordValidator();
@@ -43,6 +45,9 @@ router.post('/register', async (req, res) => {
         });
 
         await newUser.save();
+        const session: CustomSessionData = req.session as CustomSessionData;
+        app.set('userId', newUser._id.toString()); // Save user session
+
         res.status(201).send('User registered successfully.');
     } catch (error) {
         console.error(error);
@@ -52,23 +57,54 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
+        const session: CustomSessionData = req.session as CustomSessionData;
         const {username, password} = req.body;
-        // Get the user by username from MongoDB
         const user = await User.findOne({username});
 
-        //todo: are user.password and password both hashed?
+        //use bcrypt to check if the hashed password matches the user input
         if (user && await bcrypt.compare(password, user.password)) {
             // Passwords match
-            //todo: should req.session.userId be req.session.id?
-            // req.session.userId = user._id; // Save user session
-            // res.send('Logged in successfully.');
-            res.status(201).send('Logged in successfully.');
+            app.set('userId', user._id.toString()); // Save user session
+            res.status(201).send(`Logged in successfully`);
         } else {
             // User not found or passwords don't match
             res.status(400).send('Invalid credentials.');
         }
     } catch (error) {
         res.status(500).send('Error logging in.');
+    }
+});
+
+router.get('/check-session', async (req, res) => {
+    try {
+        const userId = app.get('userId');
+        if (userId) {
+            const user = await User.findById(userId);
+            if (user) {
+                res.status(200).send(user.username);
+            } else {
+                res.status(404).send('User not found.');
+            }
+        } else {
+            res.status(200).send(false);
+        }
+    } catch (error) {
+        res.status(500).send(`Error checking session: ${error}`);
+    }
+});
+
+router.post('/logout', (req, res) => {
+    try {
+        req.session.destroy((error) => {
+            if (error) {
+                res.status(500).send('Error logging out.');
+            } else {
+                app.set('userId', ''); // Clear user session
+                res.status(200).send('Logged out successfully.');
+            }
+        });
+    } catch (error) {
+        res.status(500).send('Error logging out.');
     }
 });
 

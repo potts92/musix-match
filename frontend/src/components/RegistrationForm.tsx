@@ -35,8 +35,8 @@ const RegistrationForm: React.FC = () => {
         e.preventDefault();
         try {
             const payload = { ...inputs, country };
-            const response = await axios.post('http://localhost:3001/api/auth/register', payload);
-            alert('Registration successful');
+            await axios.post('http://localhost:3001/api/auth/register', payload);
+            window.location.reload();
         } catch (error: any) {
             if(error?.response?.status === 400) {
                 return alert(error?.response?.data);

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import axios from 'axios';
+
 const LoginForm: React.FC = () => {
     const [inputs, setInputs] = useState({
         username: '',
@@ -16,13 +17,12 @@ const LoginForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/api/auth/login', inputs);
-        if (response?.data) alert(response?.data);
-        else alert('Logged in successfully');
+            await axios.post('http://localhost:3001/api/auth/login', inputs);
+            window.location.reload();
         } catch (error: any) {
-            if(error?.response?.status === 400) {
+            if (error?.response?.status === 400) {
                 return alert(error?.response?.data);
-            } else if(error?.response?.status === 500) {
+            } else if (error?.response?.status === 500) {
                 return alert('An error occurred during login.');
             } else {
                 console.error(error?.response?.data);
@@ -32,8 +32,10 @@ const LoginForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" placeholder="Username" value={inputs.username} onChange={handleChange} required />
-            <input type="password" name="password" placeholder="Password" value={inputs.password} onChange={handleChange} required />
+            <input type="text" name="username" placeholder="Username" value={inputs.username} onChange={handleChange}
+                   required/>
+            <input type="password" name="password" placeholder="Password" value={inputs.password}
+                   onChange={handleChange} required/>
             <button type="submit">Login</button>
         </form>
     );
