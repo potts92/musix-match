@@ -1,6 +1,8 @@
 export interface Artist {
-    artist_id: string;
-    artist_name: string;
+    artist: {
+        artist_id: string;
+        artist_name: string;
+    }
 }
 
 export interface Album {
