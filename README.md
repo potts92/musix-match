@@ -11,8 +11,8 @@
 ```
 MONGODB_URI = 'mongodb://localhost:27017/musix-match' (or your own MongoDB URI)
 PORT = 3001
-SESSION_SECRET = 'secret' (or your own secret)
-MUSIXMATCH_API_KEY = '8e343bd24865f49e56ffb12348bb9ccf';
+SESSION_SECRET = '{your own secret}'
+MUSIXMATCH_API_KEY = '{your own MusixMatch API Key}';
 ```
 4. Run `npm run install:all` to install dependencies
 5. Run `npm run start` to start the server
