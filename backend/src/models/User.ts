@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
-
-interface User {
-    name: string;
-    username: string;
-    country: string;
-    password: string;
-}
+// import {User} from "@shared/types/users"; //todo: work out why alias isn't working
+import {User} from "../../../shared/types/users";
 
 const userSchema = new mongoose.Schema<User>({
     name: { type: String, required: true },

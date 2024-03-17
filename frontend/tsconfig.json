@@ -9,7 +9,11 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types", "./types"],
     "types": ["react", "node"],
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@shared": ["../shared"]
+    }
   },
   "include": [
     "src"

@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs';
 import PasswordValidator from 'password-validator';
 import User from '../models/User';
 import {Details} from "../types/password-validator";
-import {CustomSessionData} from "../types/session";
 
 const router = express.Router();
 const app = express();
@@ -45,7 +44,6 @@ router.post('/register', async (req, res) => {
         });
 
         await newUser.save();
-        const session: CustomSessionData = req.session as CustomSessionData;
         app.set('userId', newUser._id.toString()); // Save user session
 
         res.status(201).send('User registered successfully.');
@@ -57,7 +55,6 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const session: CustomSessionData = req.session as CustomSessionData;
         const {username, password} = req.body;
         const user = await User.findOne({username});
 
@@ -75,13 +72,13 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/check-session', async (req, res) => {
+router.get('/get-user', async (req, res) => {
     try {
         const userId = app.get('userId');
         if (userId) {
             const user = await User.findById(userId);
             if (user) {
-                res.status(200).send(user.username);
+                res.status(200).send(user);
             } else {
                 res.status(404).send('User not found.');
             }

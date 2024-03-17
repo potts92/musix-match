@@ -3,18 +3,20 @@ import './App.css';
 import LoginPage from "./components/LoginPage";
 import LogoutButton from "./components/LogoutButton";
 import axios from "axios";
+// import {User} from "@shared/types/users";
+import {User} from "../../shared/types/users"; //todo: work out why alias isn't working
 
-//todo: move this to its own file and add session look in to determine if already logged in
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [username, setUsername] = useState<string>('');
+    const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
         const checkSession = async () => {
             try {
-                const username = (await axios.get('http://localhost:3001/api/auth/check-session')) || '';
-                setStates(username.data);
+                const user: User = (await axios.get('http://localhost:3001/api/auth/get-user'))?.data;
+                setStates(user);
             } catch (error: any) {
-                setStates('');
+                setStates({} as User);
                 if (error?.response?.status === 400) {
                     console.error(error?.response?.data);
                 } else if (error?.response?.status === 500) {
@@ -30,18 +32,22 @@ function App() {
 
     /**
      * Set the username and isLoggedIn states
-     * @param username
+     * @param user
      */
-    const setStates = (username: string) => {
+    const setStates = (user: User) => {
+        const username = user?.username;
+        setUser(user ?? null);
         setUsername(username);
         setIsLoggedIn(!!username);
     }
 
     return (
         <div>
-            <h1>Welcome to MusixMatch {username} {isLoggedIn && <LogoutButton/>}</h1>
+            <h1>Welcome to MusixMatch {isLoggedIn && <LogoutButton/>}</h1>
             <div>
                 {!isLoggedIn && <LoginPage/>}
+                {isLoggedIn && <h2>You are logged in as {username}</h2>}
+                {isLoggedIn && <h3>The top songs in your country ({user?.country}) are</h3>}
             </div>
         </div>
     );

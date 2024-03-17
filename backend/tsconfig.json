@@ -6,7 +6,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@shared": ["../shared"]
+    }
   },
   "exclude": ["node_modules", "**/*.spec.ts", "src/types/*.ts"],
   "include": ["src/**/*.ts"],

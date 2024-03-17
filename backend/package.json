@@ -1,5 +1,5 @@
 {
-  "name": "musixmatch-backend",
+  "name": "@musixmatch/backend",
   "version": "1.0.0",
   "description": "Backend for Musixmatch web app",
   "main": "index.ts",

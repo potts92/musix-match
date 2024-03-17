@@ -1,0 +1,10 @@
+{
+  "name": "@musixmatch/shared",
+  "version": "1.0.0",
+  "description": "Shared resources across monorepo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Potts",
+  "license": "MIT"
+}
