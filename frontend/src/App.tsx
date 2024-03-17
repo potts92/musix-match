@@ -7,7 +7,6 @@ import AlbumPage from "./pages/Album/AlbumPage";
 import TrackPage from "./pages/Track/TrackPage";
 
 function App() {
-
     return (
         <Router>
             <Routes>
