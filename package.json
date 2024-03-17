@@ -4,6 +4,8 @@
   "description": "Simple web app for interacting with the Musixmatch API",
   "main": "index.ts",
   "scripts": {
+    "start:frontend": "cd frontend && npm start",
+    "install:frontend": "cd frontend && npm install",
   },
   "author": "Alex Potts",
   "license": "MIT",
