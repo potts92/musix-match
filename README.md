@@ -6,8 +6,8 @@
  
 ### Installation
 1. Clone the repository
-2. Add an .env file to the root of the backend project
-3. Populate the .env file with the following:
+2. Add an `.env` file to the root of the backend project
+3. Populate the `.env` file with the following:
 ```
 MONGODB_URI = 'mongodb://localhost:27017/musix-match' (or your own MongoDB URI)
 PORT = 3001
@@ -22,8 +22,10 @@ MUSIXMATCH_API_KEY = '{your own MusixMatch API Key}';
 
 ## Features
 ### Frontend
-Read the frontend [README.md](./frontend/README.md)
+- Responsible for displaying the UI and handling user input
+- Read the frontend [README.md](./frontend/README.md) for more detail
 ### Backend
-Read the backend [README.md](./backend/README.md)
+- Responsible for handling requests and interacting with the database and MusixMatch API
+- Read the backend [README.md](./backend/README.md) for more detail
 ### Shared
 - Shared resources (types, interfaces, etc) are stored in the `shared` directory
