@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
 
-function LoginPage() {
+const LoginPage: React.FC = () => {
     //by default, show the login form and hide the registration form
     const [showRegistration, setShowRegistration] = useState(false);
     const [showLogin, setShowLogin] = useState(true);
