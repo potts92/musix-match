@@ -44,7 +44,7 @@ router.get('/album-tracks', async (req, res) => {
         const axios = MusixMatchGateway.getInstance();
         const tracks = await axios.getTracksByAlbum(albumId);
 
-        res.status(200).send({album_id: albumId, tracks});
+        res.status(200).send({album_id: parseInt(albumId), tracks});
     } catch (error: any) {
         res.status(500).send("Couldn't retrieve album's tracks");
     }
