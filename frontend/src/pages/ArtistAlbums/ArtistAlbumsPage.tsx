@@ -4,6 +4,7 @@ import {Album, Albums, AlbumTracks} from "../../../../shared/types/music";
 import axios, {AxiosResponse} from "axios";
 
 const ArtistAlbumsPage: React.FC = () => {
+    //todo: only show this page if the user is logged in
     const [albums, setAlbums] = useState<Albums>(new Map());
     const [artist, setArtist] = useState<string>('');
     const [tracks, setTracks] = useState<AlbumTracks[]>([]);
@@ -75,7 +76,7 @@ const ArtistAlbumsPage: React.FC = () => {
                             <ul>
                                 {album.tracks.map(track => {
                                     return <li key={track?.track?.track_id}>
-                                        <a href={`/track-lyrics/${track?.track?.track_id}`}>
+                                        <a href={`/track/${track?.track?.track_id}`}>
                                             {track?.track?.track_name}
                                         </a>
                                     </li>

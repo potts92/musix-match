@@ -4,6 +4,7 @@ import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 
 const ChartingArtistsPage: React.FC = () => {
+    //todo: only show this page if the user is logged in
     const [artists, setArtists] = useState<Artist[]>([]);
     const {country} = useParams<{ country: string }>();
 
