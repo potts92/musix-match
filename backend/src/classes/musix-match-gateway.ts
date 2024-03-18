@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import {setupCache} from 'axios-cache-interceptor';
 import {
     Album, AlbumTracksResponse,
     Artist, ArtistAlbumsResponse,
@@ -17,6 +18,7 @@ export class MusixMatchGateway {
     private readonly apiKey: string;
     private static instance: MusixMatchGateway;
     private axiosInstance: AxiosInstance;
+    private cacheMaxAge = 300000;
 
     /**
      * Private constructor to enforce singleton pattern
@@ -32,15 +34,15 @@ export class MusixMatchGateway {
                 'Access-Control-Allow-Origin': '*'
             },
         });
-
     }
 
     /**
-     * Get the singleton instance of the MusixMatchGateway
+     * Get the singleton instance of the MusixMatchGateway and sets up caching to reduce number of API calls required
      */
     public static getInstance(): MusixMatchGateway {
         if (!MusixMatchGateway.instance) {
             MusixMatchGateway.instance = new MusixMatchGateway();
+            setupCache(MusixMatchGateway.instance.axiosInstance, {ttl: MusixMatchGateway.instance.cacheMaxAge});
         }
         return MusixMatchGateway.instance;
     }
@@ -58,9 +60,6 @@ export class MusixMatchGateway {
                 ...config?.params
             }
         });
-
-        //todo: for caching, encode config to use as a key (we know config will always be in the same order as
-        // this method is private, and can only be called by public methods that control the order of the config object)
 
         return response.data;
     }
@@ -121,6 +120,7 @@ export class MusixMatchGateway {
                 track_id: trackId
             }
         });
+
         return lyrics?.message?.body?.lyrics;
     }
 }

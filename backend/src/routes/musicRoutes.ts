@@ -61,6 +61,7 @@ router.get('/track-lyrics', async (req, res) => {
 
         res.status(200).send(lyrics);
     } catch (error: any) {
+        console.error(error);
         res.status(500).send("Couldn't retrieve track's lyrics");
     }
 });

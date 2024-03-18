@@ -35,4 +35,10 @@ describe('Unit', () => {
         const lyrics = (await instance.getLyricsByTrack('267619808'))?.lyrics_body;
         expect(lyrics).toEqual(expect.any(String));
     });
+    test('cached requests should return the same response as a non cache hit', async () => {
+        const instance = MusixMatchGateway.getInstance();
+        const firstRequest = await instance.getChartingArtists('AU');
+        const secondRequest = await instance.getChartingArtists('AU');
+        expect(firstRequest).toEqual(secondRequest);
+    });
 });
