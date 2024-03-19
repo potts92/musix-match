@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Album, Albums, AlbumTracks} from "../../../../shared/types/music";
 import axios, {AxiosResponse} from "axios";
+import AlbumComponent from "./AlbumComponent";
 
 const ArtistAlbumsPage: React.FC = () => {
     //todo: only show this page if the user is logged in
@@ -27,7 +28,7 @@ const ArtistAlbumsPage: React.FC = () => {
                 setArtist(returnedAlbums.data[0]?.album?.artist_name || '');
             } catch (error: any) {
                 console.error(error);
-                setAlbums({} as Albums);
+                setAlbums(new Map() as Albums);
             }
         }
 
@@ -69,22 +70,9 @@ const ArtistAlbumsPage: React.FC = () => {
         <div>
             <h1>{artist && `${artist}'s albums:`}</h1>
             <ul>
-                {tracks.map(album => {
-                    return (
-                        <li key={album.album_id}>
-                            Album: {albums.get(album.album_id)?.album_name || ''}
-                            <ul>
-                                {album.tracks.map(track => {
-                                    return <li key={track?.track?.track_id}>
-                                        <a href={`/track/${track?.track?.track_id}`}>
-                                            {track?.track?.track_name}
-                                        </a>
-                                    </li>
-                                })}
-                            </ul>
-                        </li>
-                    );
-                })}
+                {tracks.map(album => (
+                    <AlbumComponent key={album.album_id} albumTracks={album} albums={albums}/>
+                ))}
             </ul>
         </div>
     );
