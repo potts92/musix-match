@@ -16,7 +16,8 @@ router.get('/charting-artists', async (req, res) => {
         //todo: stretch goal: paginate results to get more artists
         res.status(200).send(artists);
     } catch (error: any) {
-        res.status(500).send("Couldn't retrieve artists");
+        console.error(error);
+        res.status(500).send(`Couldn't retrieve artists for country: ${req.query.country}`);
     }
 });
 
@@ -31,7 +32,8 @@ router.get('/artist-albums', async (req, res) => {
 
         res.status(200).send(albums);
     } catch (error: any) {
-        res.status(500).send("Couldn't retrieve artist's albums");
+        console.error(error);
+        res.status(500).send(`Couldn't retrieve albums for artist with ID: ${req.query.artist_id}`);
     }
 });
 
@@ -46,7 +48,8 @@ router.get('/album-tracks', async (req, res) => {
 
         res.status(200).send({album_id: parseInt(albumId), tracks});
     } catch (error: any) {
-        res.status(500).send("Couldn't retrieve album's tracks");
+        console.error(error);
+        res.status(500).send(`Couldn't retrieve tracks for album with ID: ${req.query.album_id}`);
     }
 });
 
@@ -62,7 +65,23 @@ router.get('/track-lyrics', async (req, res) => {
         res.status(200).send(lyrics);
     } catch (error: any) {
         console.error(error);
-        res.status(500).send("Couldn't retrieve track's lyrics");
+        res.status(500).send(`Couldn't retrieve lyrics for track with ID: ${req.query.track_id}`);
+    }
+});
+
+/**
+ * Get the track by its ID
+ */
+router.get('/track', async (req, res) => {
+    try {
+        const trackId = req.query.track_id as string;
+        const axios = MusixMatchGateway.getInstance();
+        const track = await axios.getTrack(trackId);
+
+        res.status(200).send(track);
+    } catch (error: any) {
+        console.error(error);
+        res.status(500).send(`Couldn't retrieve track with ID: ${req.query.track_id}`);
     }
 });
 

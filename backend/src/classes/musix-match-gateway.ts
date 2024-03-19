@@ -123,4 +123,18 @@ export class MusixMatchGateway {
 
         return lyrics?.message?.body?.lyrics;
     }
+
+    /**
+     * Get the track by its ID
+     * @param trackId
+     */
+    public async getTrack(trackId: string): Promise<Track> {
+        const track = await this.get<MusixMatchGetResponse<Track>>('track.get', {
+            params: {
+                track_id: trackId
+            }
+        });
+
+        return track?.message?.body;
+    }
 }
