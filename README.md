@@ -16,9 +16,7 @@ MUSIXMATCH_API_KEY = '{your own MusixMatch API Key}';
 ```
 4. Run `npm run install:all` to install dependencies
 5. Run `npm run start` to start the server
-
-[//]: # (todo: not working)
-[//]: # (6. Run `npm run test` to run tests)
+6. Run `npm run test` to run tests
 
 ## Features
 ### Frontend
