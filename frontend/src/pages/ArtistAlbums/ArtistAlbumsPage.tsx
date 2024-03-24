@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {Album, Albums, AlbumTracks} from "../../../../shared/types/music";
+import {Album, Albums, AlbumTracks} from "@musixmatch/shared/types/music";
 import axios, {AxiosResponse} from "axios";
 import AlbumComponent from "./AlbumComponent";
 

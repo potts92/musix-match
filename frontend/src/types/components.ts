@@ -1,4 +1,4 @@
-import {Albums, AlbumTracks, Track} from "../../../shared/types/music";
+import {Albums, AlbumTracks, Track} from "@musixmatch/shared/types/music";
 
 export interface AlbumProps {
     albumTracks: AlbumTracks;

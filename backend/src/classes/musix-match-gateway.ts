@@ -8,7 +8,7 @@ import {
     MusixMatchGetResponse,
     Track,
     TrackLyricsResponse
-} from "../../../shared/types/music";
+} from "@musixmatch/shared/types/music";
 
 /**
  * Interface for MusixMatch API responses

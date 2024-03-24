@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@musixmatch/shared/*": ["../shared/*"]
     }
   },
   "exclude": ["node_modules", "**/*.spec.ts", "src/types/*.ts"],

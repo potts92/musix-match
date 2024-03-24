@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Artist} from "../../../../shared/types/music";
+import {Artist} from "@musixmatch/shared/types/music";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 

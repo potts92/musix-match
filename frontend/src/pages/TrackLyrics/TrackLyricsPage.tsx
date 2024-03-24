@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios, {AxiosResponse} from "axios";
-import {Lyrics, Track} from "../../../../shared/types/music";
+import {Lyrics, Track} from "@musixmatch/shared/types/music";
 
 const TrackLyricsPage: React.FC = () => {
     //todo: only show this page if the user is logged in

@@ -1,6 +1,5 @@
 import express from "express";
 import {MusixMatchGateway} from "../classes/musix-match-gateway";
-import {AlbumsWithTracks, AlbumTracks} from "../../../shared/types/music";
 
 const router = express.Router();
 
