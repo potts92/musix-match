@@ -3,9 +3,7 @@ import axios from "axios";
 import LogoutButton from "./LogoutButton";
 import LoginPage from "../Login/LoginPage";
 import {Link} from "react-router-dom";
-//todo: work out why alias isn't working
-import {User} from "../../../../shared/types/users";
-// import {User} from "@shared/types/users";
+import {User} from "@shared/types/users";
 
 const HomePage: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
