@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {User} from "@shared/types/users";
+import {User} from "@musixmatch/shared/types/users";
 
 const userSchema = new mongoose.Schema<User>({
     name: { type: String, required: true },
