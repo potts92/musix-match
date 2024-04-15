@@ -11,8 +11,11 @@ const PORT = process.env.PORT || 3000;
 
 mongoose.connect(process.env.MONGODB_URI as string);
 
+// Middleware to enable CORS and parse JSON
 app.use(cors());
 app.use(express.json());
+
+// Middleware to enable sessions
 app.use(session({
     secret: process.env.SESSION_SECRET as string,
     resave: false,
@@ -20,6 +23,7 @@ app.use(session({
     cookie: { secure: true, httpOnly: true }
 }));
 
+// Set up routes
 app.use('/api/auth', authRoutes);
 app.use('/api/music', musicRoutes);
 

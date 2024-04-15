@@ -2,6 +2,7 @@ import express from "express";
 import {MusixMatchGateway} from "../classes/musix-match-gateway";
 
 const router = express.Router();
+const musixMatch = MusixMatchGateway.getInstance();
 
 /**
  * Get the top artists for a country
@@ -9,8 +10,7 @@ const router = express.Router();
 router.get('/charting-artists', async (req, res) => {
     try {
         const country = req.query.country as string;
-        const axios = MusixMatchGateway.getInstance();
-        const artists = await axios.getChartingArtists(country);
+        const artists = await musixMatch.getChartingArtists(country);
 
         //todo: stretch goal: paginate results to get more artists
         res.status(200).send(artists);
@@ -26,8 +26,7 @@ router.get('/charting-artists', async (req, res) => {
 router.get('/artist-albums', async (req, res) => {
     try {
         const artistId = req.query.artist_id as string;
-        const axios = MusixMatchGateway.getInstance();
-        const albums = await axios.getAlbumsByArtist(artistId);
+        const albums = await musixMatch.getAlbumsByArtist(artistId);
 
         res.status(200).send(albums);
     } catch (error: any) {
@@ -42,8 +41,7 @@ router.get('/artist-albums', async (req, res) => {
 router.get('/album-tracks', async (req, res) => {
     try {
         const albumId = req.query.album_id as string;
-        const axios = MusixMatchGateway.getInstance();
-        const tracks = await axios.getTracksByAlbum(albumId);
+        const tracks = await musixMatch.getTracksByAlbum(albumId);
 
         res.status(200).send({album_id: parseInt(albumId), tracks});
     } catch (error: any) {
@@ -58,8 +56,7 @@ router.get('/album-tracks', async (req, res) => {
 router.get('/track-lyrics', async (req, res) => {
     try {
         const trackId = req.query.track_id as string;
-        const axios = MusixMatchGateway.getInstance();
-        const lyrics = await axios.getLyricsByTrack(trackId);
+        const lyrics = await musixMatch.getLyricsByTrack(trackId);
 
         res.status(200).send(lyrics);
     } catch (error: any) {
@@ -74,8 +71,7 @@ router.get('/track-lyrics', async (req, res) => {
 router.get('/track', async (req, res) => {
     try {
         const trackId = req.query.track_id as string;
-        const axios = MusixMatchGateway.getInstance();
-        const track = await axios.getTrack(trackId);
+        const track = await musixMatch.getTrack(trackId);
 
         res.status(200).send(track);
     } catch (error: any) {
